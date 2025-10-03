@@ -15,18 +15,11 @@ class RecipeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // 2
     final theme = ThemeData();
-    // 3
+
     return MaterialApp(
-      // 4
       title: 'Recipe Calculator',
-      // 5
-      theme: theme.copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.greenAccent,
-        ),
-      ),
-      // 6
-      home: const MyHomePage(title: 'Recipe Calculator'),
+      theme: theme.copyWith(colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
+      home: const MyHomePage(title: 'Recipe Calculator 3'),
     );
   }
 }
@@ -55,15 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // 1
     return Scaffold(
       // 2
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title)),
       // 3
       body: SafeArea(
         // 4
         child: ListView.builder(
           // 5
-          itemCount: Recipe.samples.length,
+          itemCount: Recipe.samples2.length,
           // 6
           itemBuilder: (BuildContext context, int index) {
             // 7
@@ -76,13 +67,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                     builder: (context) {
                       // 10
-                      return RecipeDetail(recipe: Recipe.samples[index]);
+                      return RecipeDetail(recipe: Recipe.samples2[index]);
                     },
                   ),
                 );
               },
               // 11
-              child: buildRecipeCard(Recipe.samples[index]),
+              child: buildRecipeCard(Recipe.samples2[index]),
             );
           },
         ),
@@ -104,18 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Image(image: AssetImage(recipe.imageUrl)),
             // 5
-            const SizedBox(
-              height: 14.0,
-            ),
+            const SizedBox(height: 14.0),
             // 6
             Text(
               recipe.label,
-              style: const TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Palatino',
-              ),
-            )
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700, fontFamily: 'Palatino'),
+            ),
           ],
         ),
       ),
