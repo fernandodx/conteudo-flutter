@@ -36,10 +36,7 @@ class _RestaurantLandscapeCardState extends State<RestaurantLandscapeCard> {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    widget.restaurant.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                  Image.network(widget.restaurant.imageUrl, fit: BoxFit.cover,),
                   Positioned(
                     top: 4.0,
                     right: 4.0,

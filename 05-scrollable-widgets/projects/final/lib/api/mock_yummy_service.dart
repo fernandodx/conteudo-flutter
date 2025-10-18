@@ -1,7 +1,10 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 
 import '../models/models.dart';
 
-// ExploreData serves as a data container that holds 
+// ExploreData serves as a data container that holds
 //list of restaurants, food categories, and friend posts.
 class ExploreData {
   final List<Restaurant> restaurants;
@@ -13,6 +16,7 @@ class ExploreData {
 
 // Mock Yummy service that grabs sample data to mock up a food app request/response
 class MockYummyService {
+  final String _baseUrl = "https://app-restaurant.wiremockapi.cloud";
   // Batch request that gets both today recipes and friend's feed
   Future<ExploreData> getExploreData() async {
     final restaurants = await _getRestaurants();
@@ -22,27 +26,36 @@ class MockYummyService {
     return ExploreData(restaurants, categories, friendPosts);
   }
 
-  // Get sample food categories to display in ui
   Future<List<FoodCategory>> _getCategories() async {
-    // Simulate api request wait time
-    await Future.delayed(const Duration(milliseconds: 1000));
-    // Return mock categories
-    return categories;
+    final response = await http.get(Uri.parse('$_baseUrl/categories'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      return jsonList.map((json) => FoodCategory.fromJson(json)).toList();
+    } else {
+      throw Exception('Falha ao carregar os categorias de comida');
+    }
   }
 
-  // Get the friend posts to display in ui
   Future<List<Post>> _getFriendFeed() async {
-    // Simulate api request wait time
-    await Future.delayed(const Duration(milliseconds: 1000));
-    // Return mock posts
-    return posts;
+    final response = await http.get(Uri.parse('$_baseUrl/posts'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      return jsonList.map((json) => Post.fromJson(json)).toList();
+    } else {
+      throw Exception('Falha ao carregar os comentário feed');
+    }
   }
 
-  // Get the restaurants to display in ui
   Future<List<Restaurant>> _getRestaurants() async {
-    // Simulate api request wait time
-    await Future.delayed(const Duration(milliseconds: 1000));
-    // Return mock restaurants
-    return restaurants;
+    final response = await http.get(Uri.parse('$_baseUrl/restaurants'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      return jsonList.map((json) => Restaurant.fromJson(json)).toList();
+    } else {
+      throw Exception('Falha ao carregar os restaurantes');
+    }
   }
 }

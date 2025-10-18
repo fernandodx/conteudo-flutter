@@ -12,9 +12,7 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context)
-        .textTheme
-        .apply(displayColor: Theme.of(context).colorScheme.onSurface);
+    final textTheme = Theme.of(context).textTheme.apply(displayColor: Theme.of(context).colorScheme.onSurface);
 
     return Card(
       child: Padding(
@@ -24,7 +22,7 @@ class PostCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 25,
-              backgroundImage: AssetImage(post.profileImageUrl),
+              backgroundImage: Image.network(post.profileImageUrl).image,
             ),
             const SizedBox(
               width: 16.0,

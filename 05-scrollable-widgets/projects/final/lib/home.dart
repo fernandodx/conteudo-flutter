@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/color_button.dart';
 import 'components/theme_button.dart';
-import 'constants.dart';
+import 'models/constants.dart';
 import 'screens/explore_page.dart';
 
 class Home extends StatefulWidget {
@@ -28,17 +28,17 @@ class _HomeState extends State<Home> {
   List<NavigationDestination> appBarDestinations = const [
     NavigationDestination(
       icon: Icon(Icons.home_outlined),
-      label: 'Explore',
+      label: 'Home',
       selectedIcon: Icon(Icons.home),
     ),
     NavigationDestination(
       icon: Icon(Icons.list_outlined),
-      label: 'Orders',
+      label: 'Pedidos',
       selectedIcon: Icon(Icons.list),
     ),
     NavigationDestination(
       icon: Icon(Icons.person_2_outlined),
-      label: 'Account',
+      label: 'Conta',
       selectedIcon: Icon(Icons.person),
     )
   ];
@@ -49,13 +49,13 @@ class _HomeState extends State<Home> {
       ExplorePage(),
       const Center(
         child: Text(
-          'Order Page',
+          'Pedidos',
           style: TextStyle(fontSize: 32.0),
         ),
       ),
       const Center(
         child: Text(
-          'Account Page',
+          'Conta',
           style: TextStyle(fontSize: 32.0),
         ),
       ),

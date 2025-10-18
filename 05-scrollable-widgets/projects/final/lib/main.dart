@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
 import 'home.dart';
+import 'models/constants.dart';
 
 void main() {
   runApp(const Yummy());
@@ -52,7 +52,6 @@ class _YummyState extends State<Yummy> {
       ),
       home: Home(
         appTitle: appTitle,
-
         changeTheme: changeThemeMode,
         changeColor: changeColor,
         colorSelected: colorSelected,
